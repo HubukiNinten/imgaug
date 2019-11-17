@@ -1127,16 +1127,16 @@ heatmaps_aug = seq_det(images=heatmaps, hooks=hooks_heatmaps)
 
 | 증강 | 정의 |
 | --- | --- |
-| Add(V, PCH) | V값을 각 이미지에 추가한다. PCH가 참이라면, 샘플 값이 채널마다 달라진다.  |
-| AddElementwise(V, PCH) | V값을 각 픽셀 단위에 추가한다. PCH가 참이라면, 샘플 값이 채널마다 달라진다. (픽셀 마다)  |
-| AdditiveGaussianNoise(L, S, PCH) | 픽셀단위의 화이트 노이즈와 가우시안 노이즈를 이미지에 첨가한다. 노이즈는 정규 분포 N(L,S) 를 따른다. PCH가 참이라면, 샘플 값이 채널마다 달라진다. (픽셀 마다) |
-| AdditiveLaplaceNoise(L, S, PCH) | Laplace (L, S)에 따라 laplace 분포에서 샘플링 된 노이즈를 이미지에 추가한다. PCH가 참이라면 샘플링 된 값이 채널 (및 픽셀)마다 다를 수 있다. |
-| AdditivePoissonNoise(L, PCH) | L이 람다 지수 인 포아송 분포에서 샘플링 된 노이즈를 추가한다. PCH가 참이라면 샘플링 된 값이 채널 (및 픽셀)마다 다를 수 있다. |
-| Multiply(V, PCH) | 각 이미지에 V 값을 곱하여 더 어둡고 밝은 이미지로 만든다. PCH가 참이면 샘플링 된 값이 채널마다 다를 수 있다. |
-| MultiplyElementwise(V, PCH) | 각 픽셀에 값 V를 곱하여 더 어둡고 밝은 픽셀로 만든다. PCH가 참이면 샘플링 된 값이 채널 (및 픽셀)마다 다를 수 있다.  |
-| Dropout(P, PCH) |확률이 P 인 픽셀을 0으로 설정한다. PCH가 참이면 채널이 다르게 처리 될 수 있으며, 그렇지 않으면 전체 픽셀이 0으로 설정된다.  |
+| Add(V, PCH) | `V`값을 각 이미지에 추가한다. `PCH`가 참이라면, 샘플 값이 채널마다 달라진다.  |
+| AddElementwise(V, PCH) | `V`값을 각 픽셀 단위에 추가한다. `PCH`가 참이라면, 샘플 값이 채널마다 달라진다. (픽셀 마다)  |
+| AdditiveGaussianNoise(L, S, PCH) | 픽셀단위의 화이트 노이즈와 가우시안 노이즈를 이미지에 첨가한다. 노이즈는 정규 분포 `N(L,S)` 를 따른다. `PCH`가 참이라면, 샘플 값이 채널마다 달라진다. (픽셀 마다) |
+| AdditiveLaplaceNoise(L, S, PCH) | `Laplace(L, S)`에 따라 laplace 분포에서 샘플링 된 노이즈를 이미지에 추가한다. `PCH`가 참이라면 샘플링 된 값이 채널 (및 픽셀)마다 다를 수 있다. |
+| AdditivePoissonNoise(L, PCH) | L이 람다 지수 인 포아송 분포에서 샘플링 된 노이즈를 추가한다. `PCH`가 참이라면 샘플링 된 값이 채널 (및 픽셀)마다 다를 수 있다. |
+| Multiply(V, PCH) | 각 이미지에 `V`값을 곱하여 더 어둡고 밝은 이미지로 만든다. `PCH`가 참이면 샘플링 된 값이 채널마다 다를 수 있다. |
+| MultiplyElementwise(V, PCH) | 각 픽셀에 값 `V`를 곱하여 더 어둡고 밝은 픽셀로 만든다. `PCH`가 참이면 샘플링 된 값이 채널 (및 픽셀)마다 다를 수 있다.  |
+| Dropout(P, PCH) |확률이 P 인 픽셀을 0으로 설정한다. `PCH`가 참이면 채널이 다르게 처리 될 수 있으며, 그렇지 않으면 전체 픽셀이 0으로 설정된다.  |
 | CoarseDropout(P, SPX, SPC, PCH) | `Dropout`과 유사하지만 픽셀 크기가 `SPX`이거나 상대적 크기가 `SPC` 인 거친 / 작은 이미지에서 0으로 설정 될 픽셀의 위치를 샘플링한다. 즉 `SPC`에 작은 값이 있으면 대략적인 맵이 작으므로 큰 사각형이 삭제된다. |
-| ReplaceElementwise(M, R, PCH) | 이미지의 픽셀을 `R`로 대체한다. 마스크 `M`으로 식별된 픽셀로 대체한다. `M`은 확률이 될 수 있다. 예를 들어 모든 픽셀의 5 %를 대체하려면 `0.05`이다. PCH가 참이면 마스크는 이미지, 픽셀 및 추가로 채널별로 샘플링된다.|
+| ReplaceElementwise(M, R, PCH) | 이미지의 픽셀을 `R`로 대체한다. 마스크 `M`으로 식별된 픽셀로 대체한다. `M`은 확률이 될 수 있다. 예를 들어 모든 픽셀의 5 %를 대체하려면 `0.05`이다. `PCH`가 참이면 마스크는 이미지, 픽셀 및 추가로 채널별로 샘플링된다.|
 | ImpulseNoise(P) | 모든 픽셀의 `P` 퍼센트를 임펄스 노이즈, 즉 매우 밝거나 어두운 RGB 색상으로 대체한다. `SaltAndPepper(P, PCH=True)`와 같다.  |
 | SaltAndPepper(P, PCH) | 모든 픽셀의 `P` 퍼센트를 매우 흰색 또는 검은 색으로 바꾼다. PCH가 참이면 채널마다 다른 픽셀이 교체된다. |
 | CoarseSaltAndPepper(P, SPX, SPC, PCH) |`CoarseDropout`과 유사하지만 영역을 0으로 설정하는 대신 매우 흰색 또는 검은 색으로 바꾼다. `PCH`가 참이면, coarse 교체 마스크는 이미지 및 채널당 한 번 샘플링된다.  |
