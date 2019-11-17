@@ -909,7 +909,7 @@ seq.show_grid([images[0], images[1]], cols=8, rows=8)
 ```
 
 
-### Example: Visualize Augmented Non-Image Data
+### Example: 증강된 이미지가 아닌 데이터 시각화하기
 
 `imgaug` contains many helper function, among these functions to quickly
 visualize augmented non-image results, such as bounding boxes or heatmaps.
