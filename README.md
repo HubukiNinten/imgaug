@@ -950,7 +950,7 @@ image_with_hms = hms.draw_on_image(image)
 ia.imshow(image_with_hms)
 ```
 
-LineStrings and segmentation maps support similar methods as shown above.
+LineStrings 과 segmentation maps 도 위와 같은 방법을 지원한다. 
 
 
 ### Example: 증강 한 번만 사용하기 
@@ -1047,8 +1047,7 @@ blurer = iaa.GaussianBlur(iap.Clip(iap.Normal(1.0, 0.1), 0.1, 3.0))
 images_aug = blurer(images=images)
 ```
 
-There are many more probability distributions in the library, e.g. truncated
-gaussian distribution, poisson distribution or beta distribution.
+라이브러리에는 더 많은 확률 분포가 있다. (예 : 절단 된 가우시안 분포, 포아송 분포 또는 베타 분포.) 
 
 
 ### Example: WithChannels
@@ -1300,7 +1299,7 @@ heatmaps_aug = seq_det(images=heatmaps, hooks=hooks_heatmaps)
 
 ## 인용
 
-이 라이브러리가 연구에 도움이 되었다면, 마음대로 인용해도 :
+이 라이브러리가 연구에 도움이 되었다면, 마음대로 인용해도 좋음 :
 ```latex
 @misc{imgaug,
   author = {Jung, Alexander B.
