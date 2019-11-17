@@ -1144,7 +1144,7 @@ heatmaps_aug = seq_det(images=heatmaps, hooks=hooks_heatmaps)
 | CoarseSalt(P, SPX, SPC, PCH) | `CoarseSaltAndPepper`와 유사하지만 검은 색이 아닌 매우 흰색으로만 대체된다. |
 | Pepper(P, PCH) | `SaltAndPepper`와 유사하지만 흰 색이 아닌 매우 검은 색으로만 대체된다.  |
 | CoarsePepper(P, SPX, SPC, PCH) | `CoarseSaltAndPepper`와 유사하지만 흰 색이 아닌 매우 검은 색으로만 대체된다. |
-| Invert(P, PCH) | 이미지의 모든 픽셀을 확률 P로 반전한다. 즉, (1-pixel_value)로 설정합니다. PCH가 참이면 각 채널이 개별적으로 처리된다 (일부 채널 만 반전 됨).  |
+| Invert(P, PCH) | 이미지의 모든 픽셀을 확률 P로 반전한다. 즉, (1-pixel_value)로 설정한다. PCH가 참이면 각 채널이 개별적으로 처리된다 (일부 채널 만 반전 됨).  |
 | ContrastNormalization(S, PCH) | 픽셀 값을 128보다 가까이 또는 더 가깝게 이동하여 이미지의 차이를 변경한다. 방향과 강도는 S로 정의된다. PCH가 true로 설정되면 프로세스는 다른 가능한 S로 채널 단위로 발생한다.  |
 | JpegCompression(C) | 강도 C (값 범위 : 0 ~ 100)의 JPEG 압축을 이미지에 적용한다. C 값이 높을수록 시각적 인공물이 더 많이 나타난다.  |
 
