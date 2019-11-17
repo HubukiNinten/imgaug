@@ -911,8 +911,7 @@ seq.show_grid([images[0], images[1]], cols=8, rows=8)
 
 ### Example: 증강된 이미지가 아닌 데이터 시각화하기
 
-`imgaug` contains many helper function, among these functions to quickly
-visualize augmented non-image results, such as bounding boxes or heatmaps.
+imgaug에는 바운딩 박스나 히트맵과 같은 이미지가 아닌 결과를 빠르게 시각화 할수 있는 많은 기능이 포함되어 있다.
 
 ```python
 import numpy as np
@@ -954,11 +953,9 @@ ia.imshow(image_with_hms)
 LineStrings and segmentation maps support similar methods as shown above.
 
 
-### Example: Using Augmenters Only Once 
+### Example: 증강 한 번만 사용하기 
 
-While the interface is adapted towards re-using instances of augmenters
-many times, you are also free to use them only once. The overhead to
-instantiate the augmenters each time is usually negligible.
+인터페이스는 기능 보강 인스턴스를 여러 번 재사용하도록 조정되어 있지만 한 번만 자유롭게 사용할 수도 있다. augmenter를 매번 인스턴스화하는 오버 헤드는 대개 무시할 만하다.
 
 ```python
 from imgaug import augmenters as iaa
@@ -977,15 +974,14 @@ images_aug = iaa.Sometimes(0.5, iaa.GaussianBlur(3.0))(images=images)
 ```
 
 
-### Example: Multicore Augmentation
+### Example: 멀티코어 증강
 
-Images can be augmented in **background processes** using the
-method `augment_batches(batches, background=True)`, where `batches` is
-a list/generator of
+이미지는 `augment_batches(batches, background=True)`방식을 이용하여 백그라운드 프로세스에서 보강될 수 있다. `batches`는
 [imgaug.augmentables.batches.UnnormalizedBatch](https://imgaug.readthedocs.io/en/latest/_modules/imgaug/augmentables/batches.html#UnnormalizedBatch)
 or
 [imgaug.augmentables.batches.Batch](https://imgaug.readthedocs.io/en/latest/source/api_augmentables_batches.html#imgaug.augmentables.batches.Batch).
-The following example augments a list of image batches in the background:
+의 목록/생성기이다.
+아래의 예는 백그라운드에서 이미지 batch를 보강한다.
 ```python
 import skimage.data
 import imgaug as ia
@@ -1018,23 +1014,18 @@ for images_aug in augseq.augment_batches(batches, background=True):
     ia.imshow(ia.draw_grid(images_aug.images_aug, cols=8))
 ```
 
-If you need more control over the background augmentation, e.g. to set
-seeds, control the number of used CPU cores or constraint the memory usage,
-see the corresponding
+백그라운드 augmentation에 더 많은 통제가 필요하다면, (예: 시드 설정, 사용 된 CPU 코어 수 제어 또는 메모리 사용량 제한)
+그에 해당하는
 [multicore augmentation notebook](https://nbviewer.jupyter.org/github/aleju/imgaug-doc/blob/master/notebooks/A03%20-%20Multicore%20Augmentation.ipynb)
-or the API about
+이나
 [Augmenter.pool()](https://imgaug.readthedocs.io/en/latest/source/api_augmenters_meta.html#imgaug.augmenters.meta.Augmenter.pool)
-and
+과
 [imgaug.multicore.Pool](https://imgaug.readthedocs.io/en/latest/source/api_multicore.html#imgaug.multicore.Pool).
+에 대한 API 를 참조하시오.
 
+### Example: 매개변수로서의 확률 분포
 
-### Example: Probability Distributions as Parameters
-
-Most augmenters support using tuples `(a, b)` as a shortcut to denote
-`uniform(a, b)` or lists `[a, b, c]` to denote a set of allowed values from
-which one will be picked randomly. If you require more complex probability
-distributions (e.g. gaussians, truncated gaussians or poisson distributions)
-you can use stochastic parameters from `imgaug.parameters`:
+대부분의 augmenter는 튜플  `(a, b)`을 `uniform(a, b)`을 나타내는 바로 가기로 사용하거나 목록 `[a, b, c]`를 사용하여 하나를 임의로 선택할 수있는 허용 된 값 세트를 나타낸다. 더 복잡한 확률 분포 (예 : 가우시안, 잘린 가우시안 또는 포아송 분포)가 필요한 경우 `imgaug.parameters`에서 확률 매개 변수를 사용할 수 있다.
 
 ```python
 import numpy as np
@@ -1062,7 +1053,7 @@ gaussian distribution, poisson distribution or beta distribution.
 
 ### Example: WithChannels
 
-Apply an augmenter only to specific image channels:
+특정 이미지 채널에만 증강을 적용: 
 ```python
 import numpy as np
 import imgaug.augmenters as iaa
@@ -1083,9 +1074,7 @@ images_aug = aug(images=images)
 
 ### Example: Hooks
 
-You can **dynamically deactivate augmenters** in an already defined sequence.
-We show this here by running a second array (`heatmaps`) through the pipeline,
-but only apply a subset of augmenters to that input.
+미리 정해진 순서에 따라 augmenter를 자유롭게 비활성화 할 수 있습니다. 여기서는 파이프 라인을 통해 두 번째 배열(`heatmaps`)을 실행하여, 해당 입력에 augmenter의 부분 집합만 적용합니다. 
 ```python
 import numpy as np
 import imgaug as ia
@@ -1133,13 +1122,11 @@ heatmaps_aug = seq_det(images=heatmaps, hooks=hooks_heatmaps)
 
 ## List of Augmenters
 
-The following is a list of available augmenters.
-Note that most of the below mentioned variables can be set to ranges, e.g. `A=(0.0, 1.0)` to sample a random value between 0 and 1.0 per image,
-or `A=[0.0, 0.5, 1.0]` to sample randomly either `0.0` or `0.5` or `1.0` per image.
+다음은 사용 가능한 augmenter의 목록이다. 아래에 언급 된 대부분의 변수는 범위로 설정할 수 있다. (예 : 이미지 당 0과 1.0 사이의 임의의 값을 샘플링하려면 `A=(0.0, 1.0)`, 이미지 당 `0.0`이나 `0.5` 또는 `1.0`을 임의로 샘플링하려면 `A=[0.0, 0.5, 1.0]`. 
 
-**arithmetic**
+**산수**
 
-| Augmenter | Description |
+| 증강 | 정의 |
 | --- | --- |
 | Add(V, PCH) | Adds value `V` to each image. If `PCH` is true, then the sampled values may be different per channel. |
 | AddElementwise(V, PCH) | Adds value `V` to each pixel. If `PCH` is true, then the sampled values may be different per channel (and pixel). |
